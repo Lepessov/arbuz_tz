@@ -15,3 +15,15 @@ composer install
 
 composer dump-autoload
 ```
+
+## How to run app
+
+```bash
+php test.php
+```
+
+## How to run tests
+```bash
+vendor/bin/phpunit tests
+```
+
