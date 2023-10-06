@@ -1,12 +1,23 @@
 <?php
 
-require 'JsonResponseValidator.php';
+require ('vendor/autoload.php');
 
-$jsonResponse = '{"foo": "1234", "bar": "asd", "baz": "8 (707) 288-56-23"}';
+use JsonDataTypes\KazakhstanPhoneNumberValidationStrategy;
+use JsonDataTypes\NumericValidationStrategy;
+use JsonDataTypes\StringValidationStrategy;
+use JsonResponseValidator\JsonResponseValidator;
+
+$validator = new JsonResponseValidator();
+$validator->addValidationRule('foo', new NumericValidationStrategy());
+$validator->addValidationRule('bar', new StringValidationStrategy());
+$validator->addValidationRule('baz', new KazakhstanPhoneNumberValidationStrategy());
+
+$jsonResponse = '{"foo": 42, "bar": "Hello", "baz": "+7 (701) 123-45-67"}';
 
 try {
-    JsonResponseValidator::validate($jsonResponse);
-    echo "JSON response is valid!";
+    if($validator->validate($jsonResponse)) {
+        echo "Validation passed";
+    }
 } catch (\InvalidArgumentException $e) {
-    echo "Validation error: " . $e->getMessage();
+    echo "Validation failed: " . $e->getMessage();
 }

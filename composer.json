@@ -1,5 +1,8 @@
 {
   "require-dev": {
     "phpunit/phpunit": "^10.0"
+  },
+  "autoload": {
+    "classmap": ["JsonDataTypes", "InterfaceValidation", "JsonResponseValidator", "tests"]
   }
 }

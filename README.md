@@ -12,4 +12,6 @@ It is better use "phpstorm" :).
 git clone https://github.com/Lepessov/arbuz_tz.git
 
 composer install
+
+composer dump-autoload
 ```
